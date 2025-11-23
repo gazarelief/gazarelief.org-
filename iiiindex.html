@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relief Palestine - Corporate Humanitarian Initiative</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a5fb4;
+            --secondary: #e01b24;
+            --accent: #26a269;
+            --dark: #2e3436;
+            --light: #f6f5f4;
+            --text: #241f31;
+            --text-light: #5c5c5c;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-top {
+            background-color: var(--dark);
+            color: white;
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .header-top .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .language-selector {
+            display: flex;
+            gap: 10px;
+        }
+
+        .language-selector button {
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .language-selector button:hover, .language-selector button.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .header-main {
+            padding: 15px 0;
+        }
+
+        .header-main .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .donate-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .donate-btn:hover {
+            background-color: #c4171e;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .counter {
+            background-color: rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Live Donations */
+        .live-donations {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        .live-donations h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .donation-ticker {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .donation-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+        }
+
+        /* Campaigns Section */
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .campaigns {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .campaign-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .campaign-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .campaign-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .campaign-content {
+            padding: 25px;
+        }
+
+        .campaign-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .campaign-content p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .campaign-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .campaign-price {
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .campaign-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .add-to-cart, .donate-now {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-to-cart {
+            background-color: var(--light);
+            color: var(--text);
+            border: 1px solid #ddd;
+        }
+
+        .add-to-cart:hover {
+            background-color: #e9e9e9;
+        }
+
+        .add-to-cart.active {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .donate-now {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .donate-now:hover {
+            background-color: #208e5a;
+        }
+
+        /* Shopping Cart */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            transition: right 0.3s ease;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-header h3 {
+            color: var(--primary);
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+        }
+
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: right;
+            margin-bottom: 20px;
+            padding-top: 15px;
+            border-top: 2px solid #eee;
+        }
+
+        .cart-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .checkout-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background-color: #208e5a;
+        }
+
+        .continue-shopping {
+            background-color: var(--light);
+            color: var(--text);
+            border: 1px solid #ddd;
+            padding: 12px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .continue-shopping:hover {
+            background-color: #e9e9e9;
+        }
+
+        /* Corporate Section */
+        .corporate-section {
+            background-color: var(--dark);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .corporate-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .corporate-section p {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+        }
+
+        .corporate-packages {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .corporate-package {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: left;
+        }
+
+        .corporate-package h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        .corporate-package ul {
+            list-style-type: none;
+            margin-bottom: 25px;
+        }
+
+        .corporate-package li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .corporate-package li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .corporate-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        /* Transparency Section */
+        .transparency {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .transparency-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .transparency-image {
+            flex: 1;
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;
+            border-radius: var(--border-radius);
+        }
+
+        .transparency-text {
+            flex: 1;
+        }
+
+        .transparency-text h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .transparency-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .contact-info i {
+            color: var(--accent);
+            margin-top: 4px;
+        }
+
+        .newsletter form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .newsletter input {
+            padding: 12px;
+            border-radius: var(--border-radius);
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .newsletter input::placeholder {
+            color: #aaa;
+        }
+
+        .newsletter button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .newsletter button:hover {
+            background-color: #208e5a;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .modal h2 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .modal p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .cancel-btn, .confirm-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .cancel-btn {
+            background-color: var(--light);
+            color: var(--text);
+        }
+
+        .confirm-btn {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--accent);
+            color: white;
+            padding: 15px 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            z-index: 3000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .transparency-content {
+                flex-direction: column;
+            }
+            
+            .transparency-image {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-main .container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .campaigns {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div>Relief Palestine - Corporate Humanitarian Initiative</div>
+                <div class="language-selector">
+                    <button class="active">EN</button>
+                    <button>AR</button>
+                </div>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="container">
+                <div class="logo">
+                    <div class="logo-icon" style="width: 60px; height: 60px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px;">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Relief Palestine</h1>
+                        <p>Corporate Humanitarian Initiative</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#campaigns">Campaigns</a></li>
+                        <li><a href="#corporate">Corporate</a></li>
+                        <li><a href="#transparency">Transparency</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="donate-btn" id="donateBtn">
+                    <i class="fas fa-heart"></i> Donate Now
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="counter">500 Days of Resilience</div>
+            <h2>A Responsibility That Grows!</h2>
+            <p>After 500 days of heroic steadfastness in Gaza and Jerusalem, our duty to support and give grows stronger. Our community is incomplete unless we stand with those in need.</p>
+            <button class="donate-btn" id="heroDonateBtn">
+                <i class="fas fa-hand-holding-heart"></i> Corporate Donations
+            </button>
+        </div>
+    </section>
+
+    <!-- Live Donations -->
+    <section class="live-donations">
+        <div class="container">
+            <h3><i class="fas fa-bullhorn"></i> Live Donations</h3>
+            <div class="donation-ticker" id="donationTicker">
+                <!-- Donations will appear here dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Campaigns Section -->
+    <section id="campaigns">
+        <div class="container">
+            <div class="section-title">
+                <h2>Humanitarian Campaigns</h2>
+            </div>
+            <div class="campaigns">
+                <!-- Campaign 1 -->
+                <div class="campaign-card">
+                    <div class="campaign-image" style="background-image: url('https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');"></div>
+                    <div class="campaign-content">
+                        <h3>700,000 Meals in Gaza</h3>
+                        <p>The Prophet Muhammad (peace be upon him) said: "Whoever gives food to a fasting person will have a reward like his, without that detracting from the reward of the fasting person in the slightest."</p>
+                        <div class="campaign-stats">
+                            <div class="campaign-price">$300</div>
+                            <div>700,000 meals</div>
+                        </div>
+                        <div class="campaign-actions">
+                            <button class="add-to-cart" data-id="1" data-name="Meals in Gaza" data-price="300">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                            <button class="donate-now" data-id="1" data-name="Meals in Gaza" data-price="300">
+                                <i class="fas fa-heart"></i> Donate
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campaign 2 -->
+                <div class="campaign-card">
+                    <div class="campaign-image" style="background-image: url('https://images.unsplash.com/photo-1547483238-4eeb9caf6c0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="campaign-content">
+                        <h3>Water Wells in Gaza</h3>
+                        <p>Help dig 30 wells in Gaza during Ramadan to provide clean drinking water to thousands of families in desperate need.</p>
+                        <div class="campaign-stats">
+                            <div class="campaign-price">$5,000</div>
+                            <div>30 wells</div>
+                        </div>
+                        <div class="campaign-actions">
+                            <button class="add-to-cart" data-id="2" data-name="Water Wells" data-price="5000">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                            <button class="donate-now" data-id="2" data-name="Water Wells" data-price="5000">
+                                <i class="fas fa-heart"></i> Donate
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campaign 3 -->
+                <div class="campaign-card">
+                    <div class="campaign-image" style="background-image: url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="campaign-content">
+                        <h3>Emergency Relief Campaign</h3>
+                        <p>Emergency Relief Campaign – Gaza! More than 2 million people are now waiting for your support!</p>
+                        <div class="campaign-stats">
+                            <div class="campaign-price">$10,000</div>
+                            <div>Emergency aid</div>
+                        </div>
+                        <div class="campaign-actions">
+                            <button class="add-to-cart" data-id="3" data-name="Emergency Relief" data-price="10000">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                            <button class="donate-now" data-id="3" data-name="Emergency Relief" data-price="10000">
+                                <i class="fas fa-heart"></i> Donate
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Donation Cart</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will appear here -->
+        </div>
+        <div class="cart-total" id="cartTotal">
+            Total: $0
+        </div>
+        <div class="cart-actions">
+            <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+            <button class="continue-shopping" id="continueShopping">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- Corporate Section -->
+    <section class="corporate-section" id="corporate">
+        <div class="container">
+            <h2>Corporate Partnership Packages</h2>
+            <p>Join our mission with impactful corporate giving. Your company can make a significant difference in the lives of those affected by the crisis in Palestine.</p>
+            
+            <div class="corporate-packages">
+                <!-- Package 1 -->
+                <div class="corporate-package">
+                    <h3>Humanitarian Relief Package</h3>
+                    <div class="corporate-price">$25,000</div>
+                    <ul>
+                        <li>Emergency food for 5,000 families</li>
+                        <li>Medical supplies for field clinics</li>
+                        <li>Clean water access for 10,000 people</li>
+                        <li>Corporate recognition on our website</li>
+                        <li>Digital impact report</li>
+                    </ul>
+                    <button class="donate-now corporate-donate" data-price="25000">
+                        <i class="fas fa-handshake"></i> Partner With Us
+                    </button>
+                </div>
+
+                <!-- Package 2 -->
+                <div class="corporate-package">
+                    <h3>Infrastructure Development</h3>
+                    <div class="corporate-price">$50,000</div>
+                    <ul>
+                        <li>Construction of 10 water wells</li>
+                        <li>Renovation of 50 homes</li>
+                        <li>Setup of 5 field medical clinics</li>
+                        <li>Featured corporate partner recognition</li>
+                        <li>Comprehensive impact assessment</li>
+                    </ul>
+                    <button class="donate-now corporate-donate" data-price="50000">
+                        <i class="fas fa-handshake"></i> Partner With Us
+                    </button>
+                </div>
+
+                <!-- Package 3 -->
+                <div class="corporate-package">
+                    <h3>Sustained Impact Package</h3>
+                    <div class="corporate-price">$100,000+</div>
+                    <ul>
+                        <li>Comprehensive relief program</li>
+                        <li>Long-term infrastructure projects</li>
+                        <li>Educational support for 500 children</li>
+                        <li>Premier corporate partnership status</li>
+                        <li>Customized reporting and recognition</li>
+                    </ul>
+                    <button class="donate-now corporate-donate" data-price="100000">
+                        <i class="fas fa-handshake"></i> Partner With Us
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transparency Section -->
+    <section class="transparency" id="transparency">
+        <div class="container">
+            <div class="transparency-content">
+                <div class="transparency-image"></div>
+                <div class="transparency-text">
+                    <h2>Transparency & Accountability</h2>
+                    <p>We are committed to complete transparency in all our operations. Every dollar donated goes directly to those in need, with minimal administrative costs.</p>
+                    <p>Our financial records are independently audited annually, and we provide detailed reports to all our donors showing exactly how their contributions are making a difference.</p>
+                    <p>Corporate partners receive customized impact reports with photos, stories, and data demonstrating the tangible results of their generosity.</p>
+                    <button class="donate-btn">
+                        <i class="fas fa-file-alt"></i> View Financial Reports
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Akşemsettin Mahallesi Süleymani Sokak No:15 34080 – Fatih/İSTANBUL</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>gazareliefff@gmail.com</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+90 549 272 10 67</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>(0212) 552 44 35</span>
+                        </li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#campaigns">Our Campaigns</a></li>
+                        <li><a href="#corporate">Corporate Giving</a></li>
+                        <li><a href="#transparency">Transparency</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter to receive updates on our humanitarian work.</p>
+                    <div class="newsletter">
+                        <form id="newsletterForm">
+                            <input type="text" id="fullName" placeholder="Full Name" required>
+                            <input type="tel" id="phone" placeholder="Phone" required>
+                            <input type="email" id="email" placeholder="Email Address" required>
+                            <button type="submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Relief Palestine © Copyright 2023 – All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Donation Modal -->
+    <div class="modal" id="donationModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Make a Difference</h2>
+            <p>Your generous donation will provide critical aid to families in Gaza and Jerusalem. All funds go directly to humanitarian relief efforts.</p>
+            <p>You will be redirected to our secure PayPal portal to complete your donation.</p>
+            <div class="modal-buttons">
+                <button class="cancel-btn">Cancel</button>
+                <button class="confirm-btn" id="confirmDonation">Continue to PayPal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Shopping Cart Functionality
+        let cart = [];
+        const cartSidebar = document.getElementById('cartSidebar');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        const closeCart = document.getElementById('closeCart');
+        const continueShopping = document.getElementById('continueShopping');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const donateNowButtons = document.querySelectorAll('.donate-now');
+        const corporateDonateButtons = document.querySelectorAll('.corporate-donate');
+        const modal = document.getElementById('donationModal');
+        const closeModal = document.querySelector('.close-modal');
+        const cancelBtn = document.querySelector('.cancel-btn');
+        const confirmDonation = document.getElementById('confirmDonation');
+        const donateBtn = document.getElementById('donateBtn');
+        const heroDonateBtn = document.getElementById('heroDonateBtn');
+        const newsletterForm = document.getElementById('newsletterForm');
+        const toast = document.getElementById('toast');
+        const donationTicker = document.getElementById('donationTicker');
+
+        // Sample names for live donations
+        const sampleNames = ['Ahmed', 'Mohammed', 'Fatima', 'Aisha', 'Yusuf', 'Omar', 'Khalid', 'Hassan', 'Zainab', 'Sarah', 'Abdullah', 'Ibrahim'];
+        const sampleCompanies = ['TechCorp', 'Global Solutions', 'Future Enterprises', 'Unity Group', 'Hope Foundation', 'Peace Corp'];
+
+        // Initialize live donations
+        function initializeLiveDonations() {
+            // Add initial donations
+            for (let i = 0; i < 5; i++) {
+                addLiveDonation();
+            }
+            
+            // Add new donation every 10-20 seconds
+            setInterval(addLiveDonation, Math.random() * 10000 + 10000);
+        }
+
+        // Add a live donation to the ticker
+        function addLiveDonation() {
+            const isCompany = Math.random() > 0.5;
+            const name = isCompany 
+                ? sampleCompanies[Math.floor(Math.random() * sampleCompanies.length)]
+                : sampleNames[Math.floor(Math.random() * sampleNames.length)];
+            
+            const amounts = [5000, 10000, 25000, 50000, 100000, 25000, 5000, 10000];
+            const amount = amounts[Math.floor(Math.random() * amounts.length)];
+            
+            const donationItem = document.createElement('div');
+            donationItem.className = 'donation-item';
+            donationItem.innerHTML = `<i class="fas fa-heart"></i> ${name} donated $${amount.toLocaleString()}`;
+            
+            donationTicker.appendChild(donationItem);
+            
+            // Remove oldest donation if there are more than 5
+            if (donationTicker.children.length > 5) {
+                donationTicker.removeChild(donationTicker.children[0]);
+            }
+            
+            // Show toast notification for large donations
+            if (amount >= 10000) {
+                showToast(`${name} just donated $${amount.toLocaleString()}!`);
+            }
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 5000);
+        }
+
+        // Add to cart functionality
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.getAttribute('data-id');
+                const name = button.getAttribute('data-name');
+                const price = parseInt(button.getAttribute('data-price'));
+                
+                // Check if item already in cart
+                const existingItem = cart.find(item => item.id === id);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id,
+                        name,
+                        price,
+                        quantity: 1
+                    });
+                }
+                
+                // Update button state
+                button.classList.add('active');
+                button.innerHTML = '<i class="fas fa-check"></i> Added';
+                
+                setTimeout(() => {
+                    button.classList.remove('active');
+                    button.innerHTML = '<i class="fas fa-cart-plus"></i> Add to Cart';
+                }, 2000);
+                
+                updateCart();
+                openCart();
+            });
+        });
+
+        // Donate now functionality (single item)
+        donateNowButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.getAttribute('data-id');
+                const name = button.getAttribute('data-name');
+                const price = parseInt(button.getAttribute('data-price'));
+                
+                // Add to cart as single item
+                cart = [{
+                    id,
+                    name,
+                    price,
+                    quantity: 1
+                }];
+                
+                updateCart();
+                openDonationModal();
+            });
+        });
+
+        // Corporate donation buttons
+        corporateDonateButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const price = parseInt(button.getAttribute('data-price'));
+                
+                // Add corporate package to cart
+                cart = [{
+                    id: 'corporate',
+                    name: 'Corporate Partnership',
+                    price,
+                    quantity: 1
+                }];
+                
+                updateCart();
+                openDonationModal();
+            });
+        });
+
+        // Header donate button
+        donateBtn.addEventListener('click', () => {
+            openDonationModal();
+        });
+
+        // Hero donate button
+        heroDonateBtn.addEventListener('click', () => {
+            openDonationModal();
+        });
+
+        // Update cart display
+        function updateCart() {
+            cartItems.innerHTML = '';
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <div class="cart-item-info">
+                        <h4>${item.name}</h4>
+                        <div>$${item.price.toLocaleString()} x ${item.quantity}</div>
+                    </div>
+                    <div class="cart-item-price">$${itemTotal.toLocaleString()}</div>
+                `;
+                
+                cartItems.appendChild(cartItem);
+            });
+            
+            cartTotal.textContent = `Total: $${total.toLocaleString()}`;
+        }
+
+        // Open cart sidebar
+        function openCart() {
+            cartSidebar.classList.add('active');
+        }
+
+        // Close cart sidebar
+        closeCart.addEventListener('click', () => {
+            cartSidebar.classList.remove('active');
+        });
+
+        continueShopping.addEventListener('click', () => {
+            cartSidebar.classList.remove('active');
+        });
+
+        // Checkout button
+        checkoutBtn.addEventListener('click', () => {
+            cartSidebar.classList.remove('active');
+            openDonationModal();
+        });
+
+        // Donation modal functionality
+        function openDonationModal() {
+            modal.style.display = 'flex';
+        }
+
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        confirmDonation.addEventListener('click', () => {
+            // In a real implementation, you would process the cart here
+            // and then redirect to PayPal with the total amount
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            // For demo purposes, we'll just redirect to PayPal
+            window.location.href = 'https://www.paypal.com/donate?hosted_button_id=2AX8W9V92VLM6&amount=' + total;
+        });
+
+        // Newsletter form
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            
+            // In a real implementation, you would send this data to your server
+            console.log('Newsletter subscription:', { fullName, phone, email });
+            
+            // Show success message
+            showToast('Thank you for subscribing to our newsletter!');
+            
+            // Reset form
+            newsletterForm.reset();
+        });
+
+        // Language toggle functionality
+        const langButtons = document.querySelectorAll('.language-selector button');
+        langButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                langButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                // In a real implementation, this would change the site language
+                showToast('Language changed to ' + button.textContent);
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Initialize the page
+        initializeLiveDonations();
+    </script>
+</body>
+</html>
